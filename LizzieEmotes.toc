@@ -1,0 +1,17 @@
+## Interface: 120001
+## Title: |TInterface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga:0|tLizzie Emotes|TInterface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga:0|t
+## IconTexture: Interface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga
+## Author: Ren - Illidan (US) & Jons - MirageRaceway (EU)
+## Notes: UWU
+## Version: v2
+## SavedVariables: Emoticons_Settings, TwitchEmoteStatistics
+## OptionalDeps: LibStub, LibUIDropDownMenu
+
+Libs\load_libs.xml
+Emotes.lua
+DropdownItems.lua
+LizzieEmotesAnimator.lua
+LizzieEmotes.lua
+LizzieEmoteStatistics.lua
+UI\LizzieEmotes.xml
+UI\LizzieEmoteStats.xml
