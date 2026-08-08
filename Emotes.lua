@@ -73,7 +73,7 @@ TwitchEmotes_animation_metadata = {
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievl.tga"] = {["nFrames"] = 48, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2688, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievlegs.tga"] = {["nFrames"] = 24, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 1344, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievlick.tga"] = {["nFrames"] = 38, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2128, ["framerate"] = 25},
-	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievnou.tga"] = {["nFrames"] = 10, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 560, ["framerate"] = 25},
+	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievnou.tga"] = {["nFrames"] = 10, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 560, ["framerate"] = 12},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsmush.tga"] = {["nFrames"] = 44, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2464, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievuwu.tga"] = {["nFrames"] = 30, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 1680, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievwiggle.tga"] = {["nFrames"] = 48, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2688, ["framerate"] = 25},
