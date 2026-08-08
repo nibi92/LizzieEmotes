@@ -1,3 +1,6 @@
 # Folders to ignore
 NewImages/
 CachedImages/
+
+
+convert_images_and_update_emotes.py
