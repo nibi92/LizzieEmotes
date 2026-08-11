@@ -1,4 +1,4 @@
-## Interface: 120001
+## Interface: 120001, 120100
 ## Title: |TInterface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga:0|tLizzie Emotes|TInterface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga:0|t
 ## IconTexture: Interface\AddOns\LizzieEmotes\Emotes\lizzie_vargfrost\lizzievsip.tga
 ## Author: Ren - Illidan (US) & Jons - MirageRaceway (EU)
