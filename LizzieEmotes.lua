@@ -1,5 +1,3 @@
-local LDB = LibStub("LibDataBroker-1.1")
-local LDBIcon = LibStub("LibDBIcon-1.0")
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
 local isMidnight = (select(4, GetBuildInfo()) >= 120000) --? Sadly chat restriction APIs do not exist on Classic, so we need cross-compatibility somehow
 local InChatMessagingLockdown = (C_ChatInfo and C_ChatInfo.InChatMessagingLockdown) or function()
@@ -30,8 +28,6 @@ Emoticons_Settings = {
 	["CHAT_MSG_INSTANCE_CHAT"] = true, -- 11
 	["CHAT_MSG_INSTANCE_CHAT_LEADER"] = true, -- dont count, tie to 11
 	["MAIL"] = true,
-	["MINIMAPBUTTON"] = true,
-	["MINIMAPDATA"] = {minimapPos=135},
 	["LARGEEMOTES"] = false,
 	["ENABLE_CLICKABLEEMOTES"] = true,
 	["ENABLE_AUTOCOMPLETE"] = true,
@@ -63,8 +59,6 @@ local origsettings = {
 	["CHAT_MSG_CHANNEL"] = true,
 	["CHAT_MSG_INSTANCE_CHAT"] = true,
 	["MAIL"] = true,
-	["MINIMAPBUTTON"] = true,
-	["MINIMAPDATA"] = {minimapPos=135},
 	["LARGEEMOTES"] = false,
 	["ENABLE_CLICKABLEEMOTES"] = true,
 	["ENABLE_AUTOCOMPLETE"] = true,
@@ -78,15 +72,6 @@ local origsettings = {
 
 local TwitchEmotes_N_CHATFRAMES = 0;
 
--- Put your code that you want on a minimap button click here.  arg1="LeftButton", "RightButton", etc
-function TwitchEmotes_MinimapButton_OnClick(btn)
-	if IsShiftKeyDown() then
-		TwitchStatsScreen_OnLoad();
-	else
-		LibDD:ToggleDropDownMenu(1, nil, EmoticonMiniMapDropDown,"cursor", 0, 0);
-		-- ToggleDropDownMenu(1, nil, EmoticonMiniMapDropDown,"cursor", 285, 0);
-	end
-end
 
 local ItemTextFrameSetText = ItemTextPageText.SetText;
 function ItemTextPageText.SetText(self, msg, ...)
@@ -106,43 +91,6 @@ function OpenMailBodyText.SetText(self, msg, ...)
 		msg = Emoticons_RunReplacement(msg, senderGUID, msgID, false);
 	end
 	OpenMailBodyTextSetText(self, msg, ...);
-end
-
-function Emoticons_LoadMiniMapDropdown(self, level, menuList)
-	local info = LibDD:UIDropDownMenu_CreateInfo();
-	-- local info = UIDropDownMenu_CreateInfo();
-	info.isNotRadio = true;
-	info.notCheckable = true;
-	info.notClickable = false;
-	if (level or 1) == 1 then
-		for k, v in ipairs(TwitchEmotes_dropdown_options) do
-			if (Emoticons_Settings["FAVEMOTES"][k]) then
-				info.hasArrow = true;
-				info.text = v[1];
-				info.value = false;
-				info.menuList = k;
-				LibDD:UIDropDownMenu_AddButton(info);
-				-- UIDropDownMenu_AddButton(info);
-			end
-		end
-	else
-		first = true;
-		for ke, va in ipairs(TwitchEmotes_dropdown_options[menuList]) do
-			if (first) then
-				first = false;
-			else
-				-- if(TwitchEmotes_defaultpack[va] == nil) then
-				--     print(ke.." " .. va .. " is broken");
-				-- end
-				
-				info.text = "|T" .. TwitchEmotes_defaultpack[va] .. "|t " .. va;
-				info.value = va;
-				info.func = Emoticons_Dropdown_OnClick;
-				LibDD:UIDropDownMenu_AddButton(info, level);
-				-- UIDropDownMenu_AddButton(info, level);
-			end
-		end
-	end
 end
 
 function Emoticons_Dropdown_OnClick(self, arg1, arg2, arg3)
@@ -258,9 +206,7 @@ function Emoticons_MessageFilter(self, event, message, ...)
 end
 
 local accept_stat_updates = false;
-local iconregistered = false
 local autocompleteInited = false
-local Broker_TwitchEmotes
 local _G = getfenv(0)
 function Emoticons_OnEvent(self, event, ...)
 	if (event == "ADDON_LOADED" and select(1, ...) == "LizzieEmotes") then
@@ -382,20 +328,6 @@ function Emoticons_OnEvent(self, event, ...)
 			accept_stat_updates = true;
 		end)
 		
-		Broker_TwitchEmotes = LDB:NewDataObject("LizzieEmotes", {
-			type = "launcher",
-			text = "LizzieEmotes",
-			icon = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsip.tga",
-			OnClick = TwitchEmotes_MinimapButton_OnClick
-		})
-		
-		if(Emoticons_Settings["MINIMAPBUTTON"]) then
-			LDBIcon:Register("LizzieEmotes", Broker_TwitchEmotes, Emoticons_Settings["MINIMAPDATA"])
-			iconregistered = true
-		end
-
-		Emoticons_SetMinimapButton(Emoticons_Settings["MINIMAPBUTTON"])
-		
 		AllTwitchEmoteNames = {};
 		Emoticons_SetAutoComplete(Emoticons_Settings["ENABLE_AUTOCOMPLETE"])
 
@@ -495,10 +427,6 @@ function setAllFav(value)
 end
 
 function Emoticons_OptionsWindow_OnShow(self)
-
-	if Emoticons_Settings["MINIMAPBUTTON"] then
-		getglobal("$showMinimapButtonButton"):SetChecked(true);
-	end
 
 	if Emoticons_Settings["LARGEEMOTES"] then
 		getglobal("$showLargeEmotesButton"):SetChecked(true);
@@ -620,20 +548,6 @@ function Emoticons_RunReplacement(msg, senderGUID, msgID)
 	outstr = outstr .. Emoticons_InsertEmoticons(string.sub(msg, startpos, #msg), senderGUID, msgID); -- the bit after the last link (or the whole message when no links found)
 
 	return outstr;
-end
-
-function Emoticons_SetMinimapButton(state)
-	Emoticons_Settings["MINIMAPBUTTON"] = state;
-	
-	if (state) then
-		if not iconregistered then
-			LDBIcon:Register("LizzieEmotes", Broker_TwitchEmotes, Emoticons_Settings["MINIMAPDATA"])
-			iconregistered = true
-		end
-		LDBIcon:Show("LizzieEmotes");
-	else
-		LDBIcon:Hide("LizzieEmotes");
-	end
 end
 
 
