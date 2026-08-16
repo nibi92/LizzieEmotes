@@ -54,7 +54,7 @@ TwitchEmotes_defaultpack = {
 	["lizzievWOWGI"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievwowgi.tga:28:28",
 	["lizzievYESSIR"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievyessir.tga:28:28",
 	["nolook"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievnolook.tga:28:28",
-	["oshit"] = "Interface\\AddOns\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievoshit.tga:28:28",
+	["oshit"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievoshit.tga:28:28",
 	["SLAYYY"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievslayyy.tga:28:28",
 	["YAAAS"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievyaaas.tga:28:28",
 };
