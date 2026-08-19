@@ -47,11 +47,11 @@ TwitchEmotes_defaultpack = {
 	["lizzievLEGS"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievlegs.tga:28:28",
 	["lizzievLICK"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievlick.tga:28:28",
 	["lizzievLOVE"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievlove.tga:28:28",
-	["Madge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievmadge.tga:28:28",
+	["Madge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsadge.tga:28:28",
 	["MONKA"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievmonka.tga:28:28",
 	["lizzievNOU"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievnou.tga:28:28",
 	["lizzievSAD"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsad.tga:28:28",
-	["Sadge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsadge.tga:28:28",
+	["Sadge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievmadge.tga:28:28",
 	["lizzievSHY"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievshy.tga:28:28",
 	["lizzievSIP"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsip.tga:28:28",
 	["lizzievSLAY"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievslay.tga:28:28",
@@ -101,7 +101,7 @@ TwitchEmotes_animation_metadata = {
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievwiggle.tga"] = {["nFrames"] = 48, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2688, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievclappi.tga"] = {["nFrames"] = 29, ["frameWidth"] = 224, ["frameHeight"] = 128, ["imageWidth"] = 224, ["imageHeight"] = 3712, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievgigl.tga"] = {["nFrames"] = 10, ["frameWidth"] = 140, ["frameHeight"] = 128, ["imageWidth"] = 140, ["imageHeight"] = 1280, ["framerate"] = 25},
-	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsmh.tga"] = {["nFrames"] = 9, ["frameWidth"] = 152, ["frameHeight"] = 128, ["imageWidth"] = 152, ["imageHeight"] = 1152, ["framerate"] = 25},
+	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_vargfrost\\lizzievsmh.tga"] = {["nFrames"] = 9, ["frameWidth"] = 152, ["frameHeight"] = 128, ["imageWidth"] = 152, ["imageHeight"] = 1152, ["framerate"] = 12},
 }
 
 TwitchEmotes_emoticons = {
@@ -154,7 +154,7 @@ TwitchEmotes_emoticons = {
 	["lizzievLICK"] = "lizzievLICK",
 	["lizzievLOVE"] = "lizzievLOVE",
 	["Madge"] = "Madge",
-	["lizzievMONKA"] = "MONKA",
+	["MONKA"] = "MONKA",
 	["lizzievNOU"] = "lizzievNOU",
 	["lizzievSAD"] = "lizzievSAD",
 	["Sadge"] = "Sadge",
