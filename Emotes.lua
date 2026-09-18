@@ -116,8 +116,8 @@ TwitchEmotes_animation_metadata = {
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievwiggle.tga"] = {["nFrames"] = 48, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2688, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievdance.tga"] = {["nFrames"] = 24, ["frameWidth"] = 112, ["frameHeight"] = 112, ["imageWidth"] = 112, ["imageHeight"] = 2688, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzieverm.tga"] = {["nFrames"] = 51, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 6528, ["framerate"] = 25},
-	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievnodders.tga"] = {["nFrames"] = 4, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 512, ["framerate"] = 25},
-	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievnopers.tga"] = {["nFrames"] = 4, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 512, ["framerate"] = 25},
+	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievnodders.tga"] = {["nFrames"] = 4, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 512, ["framerate"] = 12},
+	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievnopers.tga"] = {["nFrames"] = 4, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 512, ["framerate"] = 12},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievrock.tga"] = {["nFrames"] = 24, ["frameWidth"] = 112, ["frameHeight"] = 112, ["imageWidth"] = 112, ["imageHeight"] = 2688, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievvibee.tga"] = {["nFrames"] = 90, ["frameWidth"] = 152, ["frameHeight"] = 128, ["imageWidth"] = 152, ["imageHeight"] = 11520, ["framerate"] = 25},
 }
