@@ -1,0 +1,18 @@
+## Interface: 40402
+## Title: |TInterface\AddOns\LizzieEmotes\Emotes\lizzie_twitch\lizzievsip.tga:0|tLizzie Emotes|TInterface\AddOns\LizzieEmotes\Emotes\lizzie_twitch\lizzievsip.tga:0|t
+## IconTexture: Interface\AddOns\LizzieEmotes\Emotes\lizzie_twitch\lizzievsip.tga
+## Author: Ren - Illidan (US) & Jons - MirageRaceway (EU)
+## Notes: UWU
+## Version: v2
+## SavedVariables: Emoticons_Settings, TwitchEmoteStatistics
+## OptionalDeps: LibStub, LibUIDropDownMenu
+
+libs\load_libs.xml
+Emotes.lua
+DropdownItems.lua
+DiscordEmotes.lua
+LizzieEmotesAnimator.lua
+LizzieEmotes.lua
+LizzieEmoteStatistics.lua
+UI\LizzieEmotes.xml
+UI\LizzieEmoteStats.xml

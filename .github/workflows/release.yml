@@ -1,0 +1,86 @@
+name: Sync emotes and package addon
+on:
+  workflow_dispatch:
+    inputs:
+      sync_discord:
+        description: Fetch emojis from the configured Discord server
+        type: boolean
+        default: false
+      publish:
+        description: Upload to CurseForge (requires API token and game-version IDs)
+        type: boolean
+        default: false
+      flavor:
+        description: WoW client
+        type: choice
+        options: [Retail, Vanilla, TBC, Wrath, Cata, Mists]
+        default: Retail
+      release_type:
+        description: CurseForge release type
+        type: choice
+        options: [beta, release, alpha]
+        default: beta
+permissions:
+  contents: write
+concurrency:
+  group: addon-release
+  cancel-in-progress: false
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - run: python -m pip install -r requirements.txt
+      - name: Check publishing configuration before changing files
+        if: inputs.publish
+        run: python scripts/upload_curseforge.py --check
+        env:
+          CF_PROJECT_ID: '1631926'
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_GAME_VERSIONS: ${{ vars[format('CF_GAME_VERSIONS_{0}', inputs.flavor)] }}
+      - name: Test tools
+        run: python -m unittest discover -s tests -v
+      - name: Fetch Discord emojis
+        if: inputs.sync_discord
+        run: python scripts/sync_discord.py
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_GUILD_ID: ${{ vars.DISCORD_GUILD_ID }}
+      - name: Build and validate ZIP
+        run: python scripts/package_addon.py --flavor "$FLAVOR" --version "$VERSION"
+        env:
+          FLAVOR: ${{ inputs.flavor }}
+          VERSION: build-${{ github.run_number }}-${{ github.run_attempt }}
+      - name: Commit synced emojis to the selected branch
+        if: inputs.sync_discord
+        shell: bash
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add DiscordEmotes.lua Emotes/discord
+          if ! git diff --cached --quiet; then
+            git commit -m 'Sync Discord server emotes'
+            git push origin "HEAD:$BRANCH"
+          fi
+        env:
+          BRANCH: ${{ github.ref_name }}
+      - name: Save installable addon ZIP
+        uses: actions/upload-artifact@v4
+        with:
+          name: LizzieEmotes-${{ inputs.flavor }}
+          path: dist/*.zip
+          if-no-files-found: error
+      - name: Upload to CurseForge
+        if: inputs.publish
+        run: python scripts/upload_curseforge.py "dist/LizzieEmotes-$VERSION-$FLAVOR.zip" --release-type "$RELEASE_TYPE"
+        env:
+          CF_PROJECT_ID: '1631926'
+          CF_API_TOKEN: ${{ secrets.CF_API_TOKEN }}
+          CF_GAME_VERSIONS: ${{ vars[format('CF_GAME_VERSIONS_{0}', inputs.flavor)] }}
+          FLAVOR: ${{ inputs.flavor }}
+          VERSION: build-${{ github.run_number }}-${{ github.run_attempt }}
+          RELEASE_TYPE: ${{ inputs.release_type }}
