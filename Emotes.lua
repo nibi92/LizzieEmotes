@@ -76,7 +76,7 @@ TwitchEmotes_defaultpack = {
 	["nolook"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievnolook.tga:28:28",
 	["oshit"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievoshit.tga:28:28",
 	["Sadge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievmadge.tga:28:28",
-	["SLAYYY"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievslayyy.tga:28:28",
+	["slayyy"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievslayyy.tga:28:28",
 	["SMH"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievsmh.tga:28:28",
 	["YAAAS"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievyaaas.tga:28:28",
 };
@@ -200,7 +200,7 @@ TwitchEmotes_emoticons = {
 	["nolook"] = "nolook",
 	["oshit"] = "oshit",
 	["Sadge"] = "Sadge",
-	["SLAYYY"] = "SLAYYY",
+	["slayyy"] = "slayyy",
 	["SMH"] = "SMH",
 	["YAAAS"] = "YAAAS",
 };
