@@ -1,4 +1,5 @@
 TwitchEmotes_defaultpack = {
+	["maplehedgie"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\maplehedgie.tga:28:28",
 	-- lizzie_twitch
 	[":33"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizziev33.tga:28:28",
 	[":333"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizziev333.tga:28:28",
@@ -123,6 +124,7 @@ TwitchEmotes_animation_metadata = {
 }
 
 TwitchEmotes_emoticons = {
+	["maplehedgie"] = "maplehedgie",
 	-- lizzie_twitch
 	[":33"] = ":33",
 	[":333"] = ":333",
