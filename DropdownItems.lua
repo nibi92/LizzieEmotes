@@ -11,6 +11,6 @@ TwitchEmotes_dropdown_options = {
 		"lizzievsmush", "lizzievstab", "lizzievtoffla"
 	},
 	[2] = {
-		"lizzievuwu", "lizzievwiggle", "lizzievwowgi", "lizzievyessir", "maplehedgie"
+		"lizzievuwu", "lizzievwiggle", "lizzievwowgi", "lizzievyessir", "maplehedgie", "rar"
 	}
 };

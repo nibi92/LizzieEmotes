@@ -1,4 +1,5 @@
 TwitchEmotes_defaultpack = {
+	["rar"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\rar.tga:28:28",
 	["maplehedgie"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\maplehedgie.tga:28:28",
 	-- lizzie_twitch
 	[":33"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizziev33.tga:28:28",
@@ -83,6 +84,7 @@ TwitchEmotes_defaultpack = {
 };
 
 TwitchEmotes_animation_metadata = {
+	["Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\rar.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 21.917808},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizziev333.tga"] = {["nFrames"] = 95, ["frameWidth"] = 144, ["frameHeight"] = 128, ["imageWidth"] = 144, ["imageHeight"] = 12160, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievaaaa.tga"] = {["nFrames"] = 7, ["frameWidth"] = 128, ["frameHeight"] = 128, ["imageWidth"] = 128, ["imageHeight"] = 896, ["framerate"] = 25},
 	["Interface\\AddOns\\LizzieEmotes\\Emotes\\lizzie_twitch\\lizzievangy.tga"] = {["nFrames"] = 53, ["frameWidth"] = 56, ["frameHeight"] = 56, ["imageWidth"] = 56, ["imageHeight"] = 2968, ["framerate"] = 25},
@@ -124,6 +126,7 @@ TwitchEmotes_animation_metadata = {
 }
 
 TwitchEmotes_emoticons = {
+	["rar"] = "rar",
 	["maplehedgie"] = "maplehedgie",
 	-- lizzie_twitch
 	[":33"] = ":33",
