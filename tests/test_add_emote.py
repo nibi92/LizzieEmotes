@@ -3,12 +3,28 @@ import unittest
 from pathlib import Path
 from unittest.mock import patch
 
-from scripts.add_emote import Publisher, prepare, render
+from scripts.add_emote import Publisher, prepare, render, ImportFailure
 from scripts.package_addon import build
 from tests.test_tools import picture
 
 
 class UploadTest(unittest.TestCase):
+    def test_github_errors_explain_failure_without_leaking_response(self):
+        from unittest.mock import Mock
+        import requests
+        publisher = Publisher('owner/repo', 'main', 'secret-token')
+        for status in (401, 403, 404, 409, 422, 429, 500):
+            response = Mock(ok=False, status_code=status, text='secret-token')
+            with patch.object(publisher.session, 'request', return_value=response):
+                with self.assertRaises(ImportFailure) as caught:
+                    publisher.api('POST', '/git/blobs')
+                self.assertIn(str(status), str(caught.exception))
+                self.assertNotIn('secret-token', str(caught.exception))
+        with patch.object(publisher.session, 'request', side_effect=requests.Timeout('secret-token')):
+            with self.assertRaises(ImportFailure) as caught:
+                publisher.api('POST', '/git/blobs')
+            self.assertNotIn('secret-token', str(caught.exception))
+
     def test_beta_workflow_inputs_and_empty_response(self):
         publisher = Publisher('owner/repo', 'main', 'test')
         with patch.object(publisher, 'api', return_value={}) as api:

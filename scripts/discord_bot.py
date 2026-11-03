@@ -8,7 +8,7 @@ import discord
 from discord import app_commands
 from dotenv import load_dotenv
 
-from scripts.add_emote import MAX_BYTES, Publisher
+from scripts.add_emote import MAX_BYTES, Publisher, ImportFailure
 from scripts.package_addon import FLAVORS
 
 
@@ -62,12 +62,15 @@ def main():
             try:
                 data = await media.read()
                 url, key = await asyncio.to_thread(publisher.publish, name, data)
-            except ValueError as error:
+            except (ValueError, ImportFailure) as error:
                 await interaction.followup.send(str(error), ephemeral=True)
-            except Exception:
+            except Exception as error:
                 # Avoid exposing tokens, attachment URLs or HTTP bodies in Discord/logs.
-                logging.error('Emote import failed for interaction %s; check repository state before retrying.', interaction.id)
-                await interaction.followup.send('Import failed. Check GitHub before retrying; no success was confirmed.', ephemeral=True)
+                logging.error('Emote import failed for interaction %s (%s); check repository state before retrying.',
+                              interaction.id, type(error).__name__)
+                await interaction.followup.send(
+                    f'Import failed ({type(error).__name__}). Check GitHub before retrying; '
+                    'no success was confirmed.', ephemeral=True)
             else:
                 await interaction.followup.send(f'Added `{key}`: {url}\nPlayers need the updated addon installed.', ephemeral=True)
 
@@ -90,6 +93,8 @@ def main():
             bot.last_release = time.monotonic()
             try:
                 url = await asyncio.to_thread(publisher.release_beta, flavor)
+            except ImportFailure as error:
+                await interaction.followup.send(str(error), ephemeral=True)
             except Exception:
                 await interaction.followup.send(
                     'Release request was not confirmed. Check GitHub Actions before retrying; '

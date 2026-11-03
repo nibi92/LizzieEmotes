@@ -15,6 +15,10 @@ from scripts.sync_discord import convert
 MAX_BYTES = 8 * 1024 * 1024
 
 
+class ImportFailure(RuntimeError):
+    """A locally constructed message safe to show without exposing HTTP data."""
+
+
 def prepare(name, data):
     if not re.fullmatch(r'[A-Za-z][A-Za-z0-9_]{0,31}', name):
         raise ValueError('Use 1–32 letters, numbers or underscores, starting with a letter.')
@@ -66,9 +70,21 @@ class Publisher:
                                     **{'X-GitHub-Api-Version': '2022-11-28'})
 
     def api(self, method, path, **kwargs):
-        response = self.session.request(method, self.base + path, timeout=60, **kwargs)
+        try:
+            response = self.session.request(method, self.base + path, timeout=60, **kwargs)
+        except requests.RequestException:
+            raise ImportFailure('Cannot reach GitHub or the request timed out. Check GitHub before retrying.') from None
         if not response.ok:
-            raise RuntimeError(f'GitHub returned HTTP {response.status_code}. Check permissions and branch; retry after checking the repo.')
+            hints = {
+                401: 'GitHub token is invalid or expired.',
+                403: 'GitHub denied access. Check token repository access and Contents read/write permission (Actions read/write for releases), branch rules, and API rate limits.',
+                404: 'GitHub could not find the repository, branch or resource, or your token cannot access it. Check GITHUB_REPOSITORY, GITHUB_BRANCH and token repository access.',
+                409: 'GitHub reported a conflict. Check whether the branch changed, then retry.',
+                422: 'GitHub rejected the update. Check branch protection, concurrent commits and repository settings.',
+                429: 'GitHub rate limit reached. Wait before retrying.',
+            }
+            hint = hints.get(response.status_code, 'GitHub request failed. Check Actions/repository status before retrying.')
+            raise ImportFailure(f'GitHub HTTP {response.status_code}: {hint}')
         return response.json() if response.content else {}
 
     def release_beta(self, flavor='Retail'):
