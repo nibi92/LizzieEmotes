@@ -50,6 +50,21 @@ class UploadTest(unittest.TestCase):
                 publisher.publish('Missing', picture(), edit=True)
             entries['legacy'] = prepare('legacy', picture(True))[1]
             self.assertEqual(publisher.publish('legacy', picture(), edit=True)[1], ':uploaded_legacy:')
+            asset = entries['PepeWave']['texture']
+            self.assertEqual(publisher.publish('PepeWave', None, edit=True, new_name='HappyWave')[1], 'HappyWave')
+            self.assertNotIn('PepeWave', entries)
+            self.assertEqual(entries['HappyWave']['texture'], asset)
+            self.assertIn('["HappyWave"]', render(entries).decode())
+            self.assertEqual(publisher.publish('HappyWave', picture(True), edit=True, new_name='HAPPY')[1], 'HAPPY')
+            self.assertGreater(entries['HAPPY']['nFrames'], 1)
+            with self.assertRaises(ValueError):
+                publisher.publish('HAPPY', None, edit=True, new_name='legacy')
+            with self.assertRaises(ValueError):
+                publisher.publish('HAPPY', None, edit=True, new_name='../bad')
+            with self.assertRaises(ValueError):
+                publisher.publish('HAPPY', None, edit=True)
+            publisher.publish('PepeWave', picture())
+            self.assertNotEqual(entries['PepeWave']['texture'], entries['HAPPY']['texture'])
 
     def test_github_errors_explain_failure_without_leaking_response(self):
         from unittest.mock import Mock
@@ -79,6 +94,9 @@ class UploadTest(unittest.TestCase):
             with self.assertRaises(ValueError):
                 publisher.release_beta('bad')
             api.assert_not_called()
+        with patch.object(publisher, 'api', return_value={}) as api:
+            publisher.release('Retail')
+            self.assertEqual(api.call_args.kwargs['json']['inputs']['release_type'], 'release')
         from unittest.mock import Mock
         with patch.object(publisher.session, 'request', return_value=Mock(ok=True, content=b'')):
             self.assertEqual(publisher.api('POST', '/test'), {})

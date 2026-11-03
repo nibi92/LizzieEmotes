@@ -45,11 +45,11 @@ def main():
 
     bot = Bot()
 
-    async def import_emote(interaction, name, media, edit=False):
+    async def import_emote(interaction, name, media, edit=False, new_name=None):
         if not permitted(interaction, guild_id, allowed_roles):
             await interaction.response.send_message('You need Manage Server or an allowed role.', ephemeral=True)
             return
-        if media.size > MAX_BYTES:
+        if media is not None and media.size > MAX_BYTES:
             await interaction.response.send_message('Upload an image smaller than 8 MiB.', ephemeral=True)
             return
         await interaction.response.defer(ephemeral=True, thinking=True)
@@ -58,8 +58,8 @@ def main():
             return
         async with bot.import_lock:
             try:
-                data = await media.read()
-                url, key = await asyncio.to_thread(publisher.publish, name, data, edit=edit)
+                data = await media.read() if media is not None else None
+                url, key = await asyncio.to_thread(publisher.publish, name, data, edit=edit, new_name=new_name)
             except (ValueError, ImportFailure) as error:
                 await interaction.followup.send(str(error), ephemeral=True)
             except Exception as error:
@@ -78,17 +78,26 @@ def main():
     async def addemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
         await import_emote(interaction, name, media)
 
-    @bot.tree.command(name='editemote', description='Replace an uploaded emote image and push it to GitHub.', guild=guild)
-    @app_commands.describe(name='Existing uploaded name, without the legacy :uploaded_: wrapper', media='Replacement PNG, GIF, WebP or JPEG, up to 8 MiB')
-    async def editemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
-        await import_emote(interaction, name, media, edit=True)
+    @bot.tree.command(name='editemote', description='Rename an uploaded emote or replace its image, then push to GitHub.', guild=guild)
+    @app_commands.describe(name='Existing uploaded name, without the legacy :uploaded_: wrapper', media='Optional replacement image, up to 8 MiB', new_name='Optional new in-game name, preserving capitalization')
+    async def editemote(interaction: discord.Interaction, name: str, media: discord.Attachment = None, new_name: str = None):
+        await import_emote(interaction, name, media, edit=True, new_name=new_name)
 
     @bot.tree.command(name='releasebeta', description='Build the addon and publish a CurseForge beta.', guild=guild)
     @app_commands.default_permissions(manage_guild=True)
     @app_commands.choices(flavor=[app_commands.Choice(name=f, value=f) for f in FLAVORS])
     async def releasebeta(interaction: discord.Interaction, flavor: str = 'Retail'):
+        await request_release(interaction, flavor, 'beta')
+
+    @bot.tree.command(name='release', description='Build the addon and publish a full CurseForge release.', guild=guild)
+    @app_commands.default_permissions(manage_guild=True)
+    @app_commands.choices(flavor=[app_commands.Choice(name=f, value=f) for f in FLAVORS])
+    async def release(interaction: discord.Interaction, flavor: str = 'Retail'):
+        await request_release(interaction, flavor, 'release')
+
+    async def request_release(interaction, flavor, release_type):
         if not permitted(interaction, guild_id):
-            await interaction.response.send_message('You need Manage Server to publish a beta.', ephemeral=True)
+            await interaction.response.send_message('You need Manage Server to publish.', ephemeral=True)
             return
         await interaction.response.defer(ephemeral=True, thinking=True)
         # Share the upload lock so a release cannot overtake an in-progress import.
@@ -101,7 +110,7 @@ def main():
                 return
             bot.last_release = time.monotonic()
             try:
-                url = await asyncio.to_thread(publisher.release_beta, flavor)
+                url = await asyncio.to_thread(publisher.release, flavor, release_type)
             except ImportFailure as error:
                 await interaction.followup.send(str(error), ephemeral=True)
             except Exception:
@@ -110,7 +119,7 @@ def main():
                     'the token needs Actions read/write permission.', ephemeral=True)
             else:
                 await interaction.followup.send(
-                    f'Beta workflow requested for {flavor}: {url}\n'
+                    f'{release_type.capitalize()} workflow requested for {flavor}: {url}\n'
                     'Check the run for completion and CurseForge upload status.', ephemeral=True)
 
     bot.run(os.environ['DISCORD_BOT_TOKEN'])

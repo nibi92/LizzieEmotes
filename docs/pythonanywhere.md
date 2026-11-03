@@ -55,6 +55,10 @@ their permissions.
 
 ### Publish a beta from Discord
 
+For a full CurseForge release, use `/release flavor:Retail`. It uses the same
+workflow, configuration, cooldown and Manage Server permission as `/releasebeta`,
+but sets the release type to `release`.
+
 `/releasebeta flavor:Retail` starts the existing packaging workflow on
 `GITHUB_BRANCH`, with `publish=true`, `release_type=beta`, and server emoji sync
 disabled. Uploaded emotes already committed to that branch are included.
@@ -86,6 +90,9 @@ Duplicate names are rejected even if their capitalization differs. Names must
 start with a letter and contain 1–32 letters, numbers or underscores.
 Use `/editemote name:PepeWave media:<replacement image>` to replace an uploaded
 emote. It keeps the original name and works with static or animated images.
+To rename it, use `/editemote name:PepeWave new_name:HappyWave`. Media is optional
+when renaming, and you can provide both a new name and replacement media together.
+The new name is the exact in-game trigger; the old trigger is removed on rename.
 It requires the same permissions as `/addemote`; bundled original emotes cannot
 be edited with it. Existing legacy uploads keep their `:uploaded_name:` triggers;
 use the bare name (`name`) to select those in `/editemote`.
