@@ -9,6 +9,22 @@ from tests.test_tools import picture
 
 
 class UploadTest(unittest.TestCase):
+    def test_beta_workflow_inputs_and_empty_response(self):
+        publisher = Publisher('owner/repo', 'main', 'test')
+        with patch.object(publisher, 'api', return_value={}) as api:
+            url = publisher.release_beta('Mists')
+        self.assertIn('/actions/workflows/release.yml', url)
+        api.assert_called_once_with('POST', '/actions/workflows/release.yml/dispatches', json={
+            'ref': 'main', 'inputs': {'sync_discord': False, 'publish': True,
+                                     'flavor': 'Mists', 'release_type': 'beta'}})
+        with patch.object(publisher, 'api') as api:
+            with self.assertRaises(ValueError):
+                publisher.release_beta('bad')
+            api.assert_not_called()
+        from unittest.mock import Mock
+        with patch.object(publisher.session, 'request', return_value=Mock(ok=True, content=b'')):
+            self.assertEqual(publisher.api('POST', '/test'), {})
+
     def test_validation_and_animation(self):
         for name in ('../bad', 'bad"', '', '1bad'):
             with self.assertRaises(ValueError):

@@ -69,7 +69,18 @@ class Publisher:
         response = self.session.request(method, self.base + path, timeout=60, **kwargs)
         if not response.ok:
             raise RuntimeError(f'GitHub returned HTTP {response.status_code}. Check permissions and branch; retry after checking the repo.')
-        return response.json()
+        return response.json() if response.content else {}
+
+    def release_beta(self, flavor='Retail'):
+        from scripts.package_addon import FLAVORS
+        if flavor not in FLAVORS:
+            raise ValueError('Invalid WoW client')
+        result = self.api('POST', '/actions/workflows/release.yml/dispatches', json={
+            'ref': self.branch,
+            'inputs': {'sync_discord': False, 'publish': True,
+                       'flavor': flavor, 'release_type': 'beta'}})
+        return result.get('html_url', self.base.replace('api.github.com/repos/', 'github.com/')
+                          + '/actions/workflows/release.yml')
 
     def publish(self, name, data):
         texture, meta = prepare(name, data)

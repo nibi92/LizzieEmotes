@@ -2,12 +2,14 @@
 import asyncio
 import logging
 import os
+import time
 
 import discord
 from discord import app_commands
 from dotenv import load_dotenv
 
 from scripts.add_emote import MAX_BYTES, Publisher
+from scripts.package_addon import FLAVORS
 
 
 def main():
@@ -23,10 +25,11 @@ def main():
             super().__init__(intents=discord.Intents.none())
             self.tree = app_commands.CommandTree(self)
             self.import_lock = asyncio.Lock()
+            self.last_release = 0
 
         async def setup_hook(self):
             await self.tree.sync(guild=guild)
-            logging.info('Registered /addemote in guild %s', guild_id)
+            logging.info('Registered emote commands in guild %s', guild_id)
 
     bot = Bot()
 
@@ -57,6 +60,36 @@ def main():
                 await interaction.followup.send('Import failed. Check GitHub before retrying; no success was confirmed.', ephemeral=True)
             else:
                 await interaction.followup.send(f'Added `{key}`: {url}\nPlayers need the updated addon installed.', ephemeral=True)
+
+    @bot.tree.command(name='releasebeta', description='Build the addon and publish a CurseForge beta.', guild=guild)
+    @app_commands.default_permissions(manage_guild=True)
+    @app_commands.choices(flavor=[app_commands.Choice(name=f, value=f) for f in FLAVORS])
+    async def releasebeta(interaction: discord.Interaction, flavor: str = 'Retail'):
+        member = interaction.user
+        if (interaction.guild_id != guild_id or not isinstance(member, discord.Member)
+                or not member.guild_permissions.manage_guild):
+            await interaction.response.send_message('You need Manage Server to publish a beta.', ephemeral=True)
+            return
+        await interaction.response.defer(ephemeral=True, thinking=True)
+        # Share the upload lock so a release cannot overtake an in-progress import.
+        if bot.import_lock.locked():
+            await interaction.followup.send('Another operation is processing. Try again shortly.', ephemeral=True)
+            return
+        async with bot.import_lock:
+            if time.monotonic() - bot.last_release < 60:
+                await interaction.followup.send('Wait a minute between release requests.', ephemeral=True)
+                return
+            bot.last_release = time.monotonic()
+            try:
+                url = await asyncio.to_thread(publisher.release_beta, flavor)
+            except Exception:
+                await interaction.followup.send(
+                    'Release request was not confirmed. Check GitHub Actions before retrying; '
+                    'the token needs Actions read/write permission.', ephemeral=True)
+            else:
+                await interaction.followup.send(
+                    f'Beta workflow requested for {flavor}: {url}\n'
+                    'Check the run for completion and CurseForge upload status.', ephemeral=True)
 
     bot.run(os.environ['DISCORD_BOT_TOKEN'])
 

@@ -53,6 +53,23 @@ their permissions.
 
 ## Start and verify
 
+### Publish a beta from Discord
+
+`/releasebeta flavor:Retail` starts the existing packaging workflow on
+`GITHUB_BRANCH`, with `publish=true`, `release_type=beta`, and server emoji sync
+disabled. Uploaded emotes already committed to that branch are included.
+Select another client from the command choices if needed. Only members with
+Manage Server can publish; upload-only allowed roles cannot. Requests are
+limited to one per minute per bot process.
+
+For this command, also grant the bot's fine-grained GitHub token **Actions:
+Read and write** on this repository. In GitHub Actions settings, configure the
+`CF_API_TOKEN` secret and the corresponding `CF_GAME_VERSIONS_Retail` (or other
+client) variable as described in the README. The reply confirms workflow
+submission, not a finished release. Follow the Actions link to verify success.
+After an error or timeout, inspect Actions before retrying to avoid duplicate
+CurseForge uploads.
+
 Under **Tasks > Always-on tasks**, create a task with this command:
 
 ```bash
