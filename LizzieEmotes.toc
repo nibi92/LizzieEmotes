@@ -11,6 +11,7 @@ libs\load_libs.xml
 Emotes.lua
 DropdownItems.lua
 DiscordEmotes.lua
+UploadedEmotes.lua
 LizzieEmotesAnimator.lua
 LizzieEmotes.lua
 LizzieEmoteStatistics.lua

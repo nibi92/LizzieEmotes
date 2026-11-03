@@ -23,6 +23,10 @@ belong to bundled libraries and should retain their names.
 
 ## Connect a Discord server
 
+For `/addemote` image uploads from Discord directly into GitHub, see the
+[paid PythonAnywhere bot setup](docs/pythonanywhere.md). This is separate from
+the server-emoji sync below.
+
 1. Choose a server where you can authorize a bot. In Discord's Settings > Advanced,
    enable Developer Mode, right-click the server, and select **Copy Server ID**.
 2. Create an application in the [Discord Developer Portal](https://discord.com/developers/applications).
