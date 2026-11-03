@@ -45,9 +45,7 @@ def main():
 
     bot = Bot()
 
-    @bot.tree.command(name='addemote', description='Convert an image into an addon emote and push it to GitHub.', guild=guild)
-    @app_commands.describe(name='Emote name (letters, numbers, underscores)', media='PNG, GIF, WebP or JPEG, up to 8 MiB')
-    async def addemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
+    async def import_emote(interaction, name, media, edit=False):
         if not permitted(interaction, guild_id, allowed_roles):
             await interaction.response.send_message('You need Manage Server or an allowed role.', ephemeral=True)
             return
@@ -61,7 +59,7 @@ def main():
         async with bot.import_lock:
             try:
                 data = await media.read()
-                url, key = await asyncio.to_thread(publisher.publish, name, data)
+                url, key = await asyncio.to_thread(publisher.publish, name, data, edit=edit)
             except (ValueError, ImportFailure) as error:
                 await interaction.followup.send(str(error), ephemeral=True)
             except Exception as error:
@@ -72,7 +70,18 @@ def main():
                     f'Import failed ({type(error).__name__}). Check GitHub before retrying; '
                     'no success was confirmed.', ephemeral=True)
             else:
-                await interaction.followup.send(f'Added `{key}`: {url}\nPlayers need the updated addon installed.', ephemeral=True)
+                action = 'Updated' if edit else 'Added'
+                await interaction.followup.send(f'{action} `{key}`: {url}\nPlayers need the updated addon installed.', ephemeral=True)
+
+    @bot.tree.command(name='addemote', description='Convert an image into an addon emote and push it to GitHub.', guild=guild)
+    @app_commands.describe(name='Exact in-game name (letters, numbers, underscores)', media='PNG, GIF, WebP or JPEG, up to 8 MiB')
+    async def addemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
+        await import_emote(interaction, name, media)
+
+    @bot.tree.command(name='editemote', description='Replace an uploaded emote image and push it to GitHub.', guild=guild)
+    @app_commands.describe(name='Existing uploaded name, without the legacy :uploaded_: wrapper', media='Replacement PNG, GIF, WebP or JPEG, up to 8 MiB')
+    async def editemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
+        await import_emote(interaction, name, media, edit=True)
 
     @bot.tree.command(name='releasebeta', description='Build the addon and publish a CurseForge beta.', guild=guild)
     @app_commands.default_permissions(manage_guild=True)

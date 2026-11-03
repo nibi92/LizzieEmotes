@@ -79,9 +79,17 @@ cd /home/chrisba92/lizzie-emote-bot && /home/chrisba92/.virtualenvs/lizzie-emote
 Check that the task is Running and the log reports command registration. In
 the configured server, use `/addemote name:wave media:<image>`. Confirm the reply
 links to a GitHub commit containing a TGA, `UploadedEmotes.json`, and
-`UploadedEmotes.lua`. The in-game trigger is `:uploaded_wave:`.
+`UploadedEmotes.lua`. The in-game trigger is exactly `wave`. Capitalization is
+preserved: uploading `PepeWave` creates the trigger `PepeWave`.
 
-Names are case insensitive; duplicate names are rejected. Writes are one
+Duplicate names are rejected even if their capitalization differs. Names must
+start with a letter and contain 1–32 letters, numbers or underscores.
+Use `/editemote name:PepeWave media:<replacement image>` to replace an uploaded
+emote. It keeps the original name and works with static or animated images.
+It requires the same permissions as `/addemote`; bundled original emotes cannot
+be edited with it. Existing legacy uploads keep their `:uploaded_name:` triggers;
+use the bare name (`name`) to select those in `/editemote`.
+Writes are one
 atomic, non-forced Git update. Concurrent branch changes cause a failure;
 check the repository and retry. A network timeout can occur after GitHub has
 accepted a commit, so check the repository before retrying any failed upload.
