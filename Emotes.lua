@@ -1,4 +1,5 @@
 TwitchEmotes_defaultpack = {
+	["angy"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\angy.tga:28:28",
 	["rar"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\rar.tga:28:28",
 	["maplehedgie"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\custom\\maplehedgie.tga:28:28",
 	-- lizzie_twitch
@@ -126,6 +127,7 @@ TwitchEmotes_animation_metadata = {
 }
 
 TwitchEmotes_emoticons = {
+	["angy"] = "angy",
 	["rar"] = "rar",
 	["maplehedgie"] = "maplehedgie",
 	-- lizzie_twitch
