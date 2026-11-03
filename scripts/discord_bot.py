@@ -12,6 +12,16 @@ from scripts.add_emote import MAX_BYTES, Publisher
 from scripts.package_addon import FLAVORS
 
 
+def permitted(interaction, guild_id, allowed_roles=()):
+    if interaction.guild_id != guild_id or not isinstance(interaction.user, discord.Member):
+        return False
+    # Discord supplies effective permissions with the interaction. Computing
+    # Member.guild_permissions instead depends on a populated server role cache.
+    permissions = interaction.permissions
+    return (permissions.administrator or permissions.manage_guild
+            or any(role.id in allowed_roles for role in interaction.user.roles))
+
+
 def main():
     load_dotenv(os.environ.get('EMOTE_BOT_ENV', os.path.expanduser('~/.config/lizzie-emotes.env')))
     guild_id = int(os.environ['DISCORD_GUILD_ID'])
@@ -22,7 +32,9 @@ def main():
 
     class Bot(discord.Client):
         def __init__(self):
-            super().__init__(intents=discord.Intents.none())
+            intents = discord.Intents.none()
+            intents.guilds = True  # Cache server roles for the upload role allowlist.
+            super().__init__(intents=intents)
             self.tree = app_commands.CommandTree(self)
             self.import_lock = asyncio.Lock()
             self.last_release = 0
@@ -36,9 +48,7 @@ def main():
     @bot.tree.command(name='addemote', description='Convert an image into an addon emote and push it to GitHub.', guild=guild)
     @app_commands.describe(name='Emote name (letters, numbers, underscores)', media='PNG, GIF, WebP or JPEG, up to 8 MiB')
     async def addemote(interaction: discord.Interaction, name: str, media: discord.Attachment):
-        member = interaction.user
-        if (interaction.guild_id != guild_id or not isinstance(member, discord.Member)
-                or not (member.guild_permissions.manage_guild or any(r.id in allowed_roles for r in member.roles))):
+        if not permitted(interaction, guild_id, allowed_roles):
             await interaction.response.send_message('You need Manage Server or an allowed role.', ephemeral=True)
             return
         if media.size > MAX_BYTES:
@@ -65,9 +75,7 @@ def main():
     @app_commands.default_permissions(manage_guild=True)
     @app_commands.choices(flavor=[app_commands.Choice(name=f, value=f) for f in FLAVORS])
     async def releasebeta(interaction: discord.Interaction, flavor: str = 'Retail'):
-        member = interaction.user
-        if (interaction.guild_id != guild_id or not isinstance(member, discord.Member)
-                or not member.guild_permissions.manage_guild):
+        if not permitted(interaction, guild_id):
             await interaction.response.send_message('You need Manage Server to publish a beta.', ephemeral=True)
             return
         await interaction.response.defer(ephemeral=True, thinking=True)
