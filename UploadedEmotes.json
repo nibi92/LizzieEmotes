@@ -48,5 +48,15 @@
     "framerate": 50.0,
     "trigger": "HoldUp",
     "texture": "HoldUp_37efce0e0c474218b863fbb723a92e73"
+  },
+  "gasp": {
+    "nFrames": 48,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 25.263158,
+    "trigger": "gasp",
+    "texture": "gasp_bdd232cb4f5f4ccaaa9523ea665ef57e"
   }
 }
