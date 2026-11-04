@@ -21,6 +21,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["ermm"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ermm_c05a7e50bcd2427db46addf1b54331bf.tga:28:28"
+TwitchEmotes_emoticons["ermm"] = "ermm"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ermm_c05a7e50bcd2427db46addf1b54331bf.tga"] = {nFrames = 34, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.185185}
+category[#category + 1] = "ermm"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["eyeroll"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\eyeroll_8a2dfe9aea3f44eb833c4263f76a5574.tga:28:28"
 TwitchEmotes_emoticons["eyeroll"] = "eyeroll"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\eyeroll_8a2dfe9aea3f44eb833c4263f76a5574.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 23.443223}

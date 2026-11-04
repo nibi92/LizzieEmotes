@@ -88,5 +88,15 @@
     "framerate": 23.443223,
     "trigger": "eyeroll",
     "texture": "eyeroll_8a2dfe9aea3f44eb833c4263f76a5574"
+  },
+  "ermm": {
+    "nFrames": 34,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 25.185185,
+    "trigger": "ermm",
+    "texture": "ermm_c05a7e50bcd2427db46addf1b54331bf"
   }
 }
