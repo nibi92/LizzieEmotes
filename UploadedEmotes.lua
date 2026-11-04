@@ -21,6 +21,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["eyeroll"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\eyeroll_8a2dfe9aea3f44eb833c4263f76a5574.tga:28:28"
+TwitchEmotes_emoticons["eyeroll"] = "eyeroll"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\eyeroll_8a2dfe9aea3f44eb833c4263f76a5574.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 23.443223}
+category[#category + 1] = "eyeroll"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["flirt"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\flirt_428fa61ae2304c3aa0c3eb09c416b19a.tga:28:28"
 TwitchEmotes_emoticons["flirt"] = "flirt"
 category[#category + 1] = "flirt"

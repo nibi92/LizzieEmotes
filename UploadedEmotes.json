@@ -78,5 +78,15 @@
     "framerate": 18.285714,
     "trigger": "ohboy",
     "texture": "ohboy_d596c154739f4a94aadd9618e73d6017"
+  },
+  "eyeroll": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 23.443223,
+    "trigger": "eyeroll",
+    "texture": "eyeroll_8a2dfe9aea3f44eb833c4263f76a5574"
   }
 }
