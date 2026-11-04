@@ -148,5 +148,15 @@
     "framerate": 13.617021,
     "trigger": "wink",
     "texture": "wink_e2919357957d47529899b2800e256da6"
+  },
+  "Hai": {
+    "nFrames": 32,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 2048,
+    "framerate": 24.615385,
+    "trigger": "Hai",
+    "texture": "Hai_a5ed714a1b48445ea1630b1bcf56ab2e"
   }
 }
