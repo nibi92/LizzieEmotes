@@ -38,5 +38,15 @@
     "framerate": 50.0,
     "trigger": "WAHOO",
     "texture": "WAHOO_5be6ca8a3d58427488df4f9e9606853d"
+  },
+  "HoldUp": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "HoldUp",
+    "texture": "HoldUp_37efce0e0c474218b863fbb723a92e73"
   }
 }
