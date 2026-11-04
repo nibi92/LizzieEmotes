@@ -118,5 +118,15 @@
     "framerate": 50.0,
     "trigger": "LMAO",
     "texture": "LMAO_6617efed05374b0aaa7153a569da8dbb"
+  },
+  "IHaveAQuestion": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "IHaveAQuestion",
+    "texture": "IHaveAQuestion_8f565db8fd07482098bc2dccfe2abe57"
   }
 }

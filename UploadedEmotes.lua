@@ -7,6 +7,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["IHaveAQuestion"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\IHaveAQuestion_8f565db8fd07482098bc2dccfe2abe57.tga:28:28"
+TwitchEmotes_emoticons["IHaveAQuestion"] = "IHaveAQuestion"
+category[#category + 1] = "IHaveAQuestion"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["LMAO"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\LMAO_6617efed05374b0aaa7153a569da8dbb.tga:28:28"
 TwitchEmotes_emoticons["LMAO"] = "LMAO"
 category[#category + 1] = "LMAO"
