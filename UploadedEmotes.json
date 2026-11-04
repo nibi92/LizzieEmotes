@@ -58,5 +58,15 @@
     "framerate": 25.263158,
     "trigger": "gasp",
     "texture": "gasp_bdd232cb4f5f4ccaaa9523ea665ef57e"
+  },
+  "shush": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 20.983607,
+    "trigger": "shush",
+    "texture": "shush_cfe82fe29bba4a94a00ceeaf1fb755c8"
   }
 }
