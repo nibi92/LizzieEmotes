@@ -7,6 +7,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["LOL"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\LOL_a3cee25735d248cdb402cbb02055c81d.tga:28:28"
+TwitchEmotes_emoticons["LOL"] = "LOL"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\LOL_a3cee25735d248cdb402cbb02055c81d.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 19.161677}
+category[#category + 1] = "LOL"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["PauseChamp"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\pausechamp.tga:28:28"
 TwitchEmotes_emoticons["PauseChamp"] = "PauseChamp"
 category[#category + 1] = "PauseChamp"

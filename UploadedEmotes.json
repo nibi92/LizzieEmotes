@@ -98,5 +98,15 @@
     "framerate": 25.185185,
     "trigger": "ermm",
     "texture": "ermm_c05a7e50bcd2427db46addf1b54331bf"
+  },
+  "LOL": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 19.161677,
+    "trigger": "LOL",
+    "texture": "LOL_a3cee25735d248cdb402cbb02055c81d"
   }
 }
