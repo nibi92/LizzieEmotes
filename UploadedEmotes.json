@@ -1,10 +1,12 @@
 {
-  "pausechamp": {
+  "PauseChamp": {
     "nFrames": 1,
     "frameWidth": 64,
     "frameHeight": 64,
     "imageWidth": 64,
     "imageHeight": 64,
-    "framerate": 50.0
+    "framerate": 50.0,
+    "trigger": "PauseChamp",
+    "texture": "pausechamp"
   }
 }
