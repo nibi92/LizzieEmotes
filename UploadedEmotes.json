@@ -18,5 +18,15 @@
     "framerate": 50.0,
     "trigger": "flirt",
     "texture": "flirt_428fa61ae2304c3aa0c3eb09c416b19a"
+  },
+  "walkk": {
+    "nFrames": 24,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 2048,
+    "framerate": 25.0,
+    "trigger": "walkk",
+    "texture": "walkk_bc33dd02f66541c3b868dcc4990cbc22"
   }
 }
