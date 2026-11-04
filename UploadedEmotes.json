@@ -68,5 +68,15 @@
     "framerate": 20.983607,
     "trigger": "shush",
     "texture": "shush_cfe82fe29bba4a94a00ceeaf1fb755c8"
+  },
+  "ohboy": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 18.285714,
+    "trigger": "ohboy",
+    "texture": "ohboy_d596c154739f4a94aadd9618e73d6017"
   }
 }
