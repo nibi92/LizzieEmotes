@@ -7,6 +7,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["WAHOO"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\WAHOO_5be6ca8a3d58427488df4f9e9606853d.tga:28:28"
+TwitchEmotes_emoticons["WAHOO"] = "WAHOO"
+category[#category + 1] = "WAHOO"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["flirt"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\flirt_428fa61ae2304c3aa0c3eb09c416b19a.tga:28:28"
 TwitchEmotes_emoticons["flirt"] = "flirt"
 category[#category + 1] = "flirt"

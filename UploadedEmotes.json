@@ -28,5 +28,15 @@
     "framerate": 25.0,
     "trigger": "walkk",
     "texture": "walkk_bc33dd02f66541c3b868dcc4990cbc22"
+  },
+  "WAHOO": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "WAHOO",
+    "texture": "WAHOO_5be6ca8a3d58427488df4f9e9606853d"
   }
 }
