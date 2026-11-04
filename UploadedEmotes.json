@@ -8,5 +8,15 @@
     "framerate": 50.0,
     "trigger": "PauseChamp",
     "texture": "pausechamp"
+  },
+  "flirt": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "flirt",
+    "texture": "flirt_428fa61ae2304c3aa0c3eb09c416b19a"
   }
 }

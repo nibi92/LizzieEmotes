@@ -7,6 +7,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["flirt"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\flirt_428fa61ae2304c3aa0c3eb09c416b19a.tga:28:28"
+TwitchEmotes_emoticons["flirt"] = "flirt"
+category[#category + 1] = "flirt"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 if #category > 0 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
 end
