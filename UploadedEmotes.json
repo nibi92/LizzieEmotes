@@ -138,5 +138,15 @@
     "framerate": 21.333333,
     "trigger": "yoink",
     "texture": "yoink_1a3f090eb14c4e49bebf755004fc162d"
+  },
+  "wink": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 13.617021,
+    "trigger": "wink",
+    "texture": "wink_e2919357957d47529899b2800e256da6"
   }
 }
