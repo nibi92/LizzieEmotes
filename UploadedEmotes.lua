@@ -98,6 +98,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["yoink"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\yoink_1a3f090eb14c4e49bebf755004fc162d.tga:28:28"
+TwitchEmotes_emoticons["yoink"] = "yoink"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\yoink_1a3f090eb14c4e49bebf755004fc162d.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 21.333333}
+category[#category + 1] = "yoink"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 if #category > 0 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
 end

@@ -128,5 +128,15 @@
     "framerate": 50.0,
     "trigger": "IHaveAQuestion",
     "texture": "IHaveAQuestion_8f565db8fd07482098bc2dccfe2abe57"
+  },
+  "yoink": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 21.333333,
+    "trigger": "yoink",
+    "texture": "yoink_1a3f090eb14c4e49bebf755004fc162d"
   }
 }
