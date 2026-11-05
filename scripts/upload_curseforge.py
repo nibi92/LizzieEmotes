@@ -6,6 +6,15 @@ from pathlib import Path
 import requests
 
 
+def upload_error(response, token):
+    # Include the server's validation reason without echoing credentials or
+    # allowing response newlines to become GitHub Actions log commands.
+    detail = response.text.replace(token, '[redacted]') if token else response.text
+    detail = ' '.join(detail.split())[:1500]
+    return (f'CurseForge upload failed: HTTP {response.status_code}. '
+            f'Server response: {detail or "(empty)"}. Check the project before retrying.')
+
+
 def configuration():
     project = os.environ.get('CF_PROJECT_ID', '')
     token = os.environ.get('CF_API_TOKEN', '')
@@ -39,5 +48,5 @@ if __name__ == '__main__':
                                      files={'file': (args.archive.name, archive, 'application/zip')},
                                      timeout=180, allow_redirects=False)
         if response.status_code != 200:
-            raise SystemExit(f'CurseForge upload failed: HTTP {response.status_code}. Check the project before retrying.')
+            raise SystemExit(upload_error(response, token))
         print(f'Uploaded CurseForge file ID: {response.json()["id"]}')

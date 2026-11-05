@@ -8,7 +8,7 @@ import zipfile
 from PIL import Image
 from scripts.package_addon import build, FLAVORS, ROOT
 from scripts.sync_discord import convert, sync, fetch
-from scripts.upload_curseforge import configuration
+from scripts.upload_curseforge import configuration, upload_error
 
 
 def picture(animated=False):
@@ -23,6 +23,14 @@ def picture(animated=False):
 
 
 class ToolsTest(unittest.TestCase):
+    def test_upload_error_shows_reason_and_redacts_token(self):
+        from unittest.mock import Mock
+        response = Mock(status_code=400, text='Invalid game version\nsecret-token\n::warning::example')
+        message = upload_error(response, 'secret-token')
+        self.assertIn('Invalid game version', message)
+        self.assertNotIn('secret-token', message)
+        self.assertNotIn('\n', message)
+
     def test_rate_limit_retry_and_cdn_does_not_receive_token(self):
         from unittest.mock import Mock
         limited = Mock(status_code=429)
