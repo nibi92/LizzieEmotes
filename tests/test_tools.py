@@ -8,7 +8,7 @@ import zipfile
 from PIL import Image
 from scripts.package_addon import build, FLAVORS, ROOT
 from scripts.sync_discord import convert, sync, fetch
-from scripts.upload_curseforge import configuration, upload_error
+from scripts.upload_curseforge import configuration, upload_error, validate_versions
 
 
 def picture(animated=False):
@@ -23,6 +23,15 @@ def picture(animated=False):
 
 
 class ToolsTest(unittest.TestCase):
+    def test_invalid_version_lists_forever_candidates(self):
+        from unittest.mock import Mock
+        response = Mock(status_code=200)
+        response.json.return_value = [dict(id=42, name='1.60.1', gameVersionTypeID=7)]
+        with patch('scripts.upload_curseforge.requests.get', return_value=response):
+            validate_versions('test', [42])
+            with self.assertRaisesRegex(ValueError, '"id": 42'):
+                validate_versions('test', [88568])
+
     def test_upload_error_shows_reason_and_redacts_token(self):
         from unittest.mock import Mock
         response = Mock(status_code=400, text='Invalid game version\nsecret-token\n::warning::example')

@@ -26,6 +26,24 @@ def configuration():
     return project, token, versions
 
 
+def validate_versions(token, versions):
+    response = requests.get('https://wow.curseforge.com/api/game/versions',
+                            headers={'X-Api-Token': token}, timeout=60,
+                            allow_redirects=False)
+    if response.status_code != 200:
+        raise ValueError(upload_error(response, token))
+    available = response.json()
+    invalid = set(versions) - {item['id'] for item in available}
+    if invalid:
+        candidates = [item for item in available
+                      if 'forever' in item.get('name', '').lower()
+                      or item.get('name', '').startswith('1.60.')]
+        details = json.dumps(candidates)
+        raise ValueError(f'Unknown CurseForge game-version IDs: {sorted(invalid)}. '
+                         f'Forever candidates from CurseForge: {details}. '
+                         'Set CF_GAME_VERSIONS_Forever to the matching id in brackets.')
+
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('archive', type=Path, nargs='?')
@@ -34,7 +52,11 @@ if __name__ == '__main__':
     args = parser.parse_args()
     project, token, versions = configuration()
     if args.check:
-        print('CurseForge configuration is present')
+        try:
+            validate_versions(token, versions)
+        except ValueError as error:
+            raise SystemExit(str(error)) from None
+        print('CurseForge configuration and game-version IDs are valid')
     else:
         if not args.archive:
             parser.error('archive is required unless --check is used')
