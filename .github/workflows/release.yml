@@ -68,7 +68,19 @@ jobs:
           fi
         env:
           BRANCH: ${{ github.ref_name }}
-      - name: Save installable addon ZIP
+      - name: Keep installable addon ZIP in GitHub Releases
+        shell: bash
+        run: |
+          gh release create "$VERSION-$FLAVOR" "dist/LizzieEmotes-$VERSION-$FLAVOR.zip" \
+            --target "$(git rev-parse HEAD)" \
+            --title "LizzieEmotes $VERSION ($FLAVOR)" \
+            --notes "Install the attached ZIP for $FLAVOR by extracting its LizzieEmotes folder into Interface/AddOns. This download has no automatic expiry."
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          FLAVOR: ${{ inputs.flavor }}
+          VERSION: build-${{ github.run_number }}-${{ github.run_attempt }}
+      - name: Save temporary workflow artifact
         uses: actions/upload-artifact@v4
         with:
           name: LizzieEmotes-${{ inputs.flavor }}

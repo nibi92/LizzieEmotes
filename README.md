@@ -4,6 +4,13 @@ Install the `LizzieEmotes` folder inside WoW's `Interface/AddOns` directory.
 Use the ZIP produced by the packaging script or GitHub Actions, **not** GitHub's
 "Download ZIP" source archive (which adds a `-main` folder suffix).
 
+Every successful packaging workflow also attaches the installable ZIP to a
+[GitHub Release](https://github.com/nibi92/LizzieEmotes/releases). Download the
+ZIP for your WoW client under **Assets**. Release downloads have no automatic
+expiry, unlike temporary Actions artifacts; they remain available while the
+repository, release and asset are retained. Future WoW updates may still require
+addon compatibility updates.
+
 ## Packaging
 
 With Python 3.12 or later:
