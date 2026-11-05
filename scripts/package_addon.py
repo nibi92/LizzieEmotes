@@ -5,7 +5,7 @@ import re
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-FLAVORS = ('Retail', 'Vanilla', 'TBC', 'Wrath', 'Cata', 'Mists')
+FLAVORS = ('Retail', 'Forever', 'Vanilla', 'TBC', 'Wrath', 'Cata', 'Mists')
 
 
 def build(root=ROOT, flavor='Retail', version='local'):

@@ -24,7 +24,7 @@ python scripts/package_addon.py --flavor Retail --version v2
 The result is `dist/LizzieEmotes-v2-Retail.zip`. Its only top-level folder is
 `LizzieEmotes`, containing `LizzieEmotes.toc`. The builder selects one client TOC
 and gives it the exact base filename inside the ZIP. Available clients: Retail,
-Vanilla, TBC, Wrath, Cata, Mists. Existing Interface numbers are preserved; validate
+Forever, Vanilla, TBC, Wrath, Cata, Mists. Existing Interface numbers are preserved; validate
 compatibility in the intended WoW client before publishing. Nested library TOCs
 belong to bundled libraries and should retain their names.
 
@@ -73,6 +73,7 @@ The workflow targets project **1631926**. Configure:
 | --- | --- | --- |
 | `CF_API_TOKEN` | Secret | Token from the [CurseForge author portal](https://authors.curseforge.com/account/api-tokens) |
 | `CF_GAME_VERSIONS_Retail` | Variable | JSON array of CurseForge version IDs, e.g. `[12345]` (example only) |
+| `CF_GAME_VERSIONS_Forever` | Variable | JSON array of CurseForge IDs for WoW: Forever (1.60.1); not the Interface number `16001` |
 | `CF_GAME_VERSIONS_Mists`, etc. | Variable | Version IDs for each additional client you publish |
 
 Find actual version IDs using authenticated GET
@@ -84,6 +85,12 @@ describes authentication and version lookup.
 
 Run the same workflow with **publish** enabled to upload after building and pushing
 any synced emotes. Default release type is beta; choose release when ready.
+For **WoW: Forever**, select **Forever** in the client dropdown and enable
+**publish**. This builds a separate `LizzieEmotes-build-…-Forever.zip` using
+`LizzieEmotes_Forever.toc` (Interface `16001`) and uploads with
+`CF_GAME_VERSIONS_Forever`. Configure that variable before publishing. The
+Discord release commands also accept `Forever` after restarting the updated bot.
+Packaging does not verify in-game compatibility; test the addon in Forever.
 Publishing also works with Discord syncing disabled. Download the artifact and
 extract the addon ZIP inside it for a manual upload. CurseForge may review uploaded
 files before making them available. A successful upload prints its file ID.
