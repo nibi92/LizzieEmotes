@@ -1,5 +1,4 @@
 local LibDD = LibStub:GetLibrary("LibUIDropDownMenu-4.0")
-local isMidnight = (select(4, GetBuildInfo()) >= 120000) --? Sadly chat restriction APIs do not exist on Classic, so we need cross-compatibility somehow
 local InChatMessagingLockdown = (C_ChatInfo and C_ChatInfo.InChatMessagingLockdown) or function()
 	return false
 end
@@ -109,48 +108,24 @@ function SendMail(recipient, subject, msg, ...)
 	end
 end
 
-if isMidnight then
-	EventRegistry:RegisterCallback( --? Reaffirm we are not sending emotes during combat, as that can cause issues with the Midnight messaging restrictions.
-		"ChatFrame.OnEditBoxPreSendText",
-		function(self, editBox)
-			if not Emoticons_Settings["ENABLE_CLICKABLEEMOTES"] then return end
+-- Clean the edit box before Blizzard sends it. Wrapping the protected send APIs
+-- taints the send path on Classic as well as Retail.
+EventRegistry:RegisterCallback(
+	"ChatFrame.OnEditBoxPreSendText",
+	function(self, editBox)
+		if not Emoticons_Settings["ENABLE_CLICKABLEEMOTES"] then return end
+		if InChatMessagingLockdown() then return end
 
-			local msg = editBox:GetText()
-			if not msg or issecretvalue(msg) or msg:match("^%s*$") then return end
+		local msg = editBox:GetText()
+		if issecretvalue(msg) or not msg or msg:match("^%s*$") then return end
 
-			local newMsg = TwitchEmotes_Message_StripEscapes(msg)
-			if newMsg ~= msg then
-				if InChatMessagingLockdown() then 
-					print("Can't send emotes during combat - Midnight messaging restrictions in effect.")
-					return 
-				end
-				editBox:SetText(newMsg)
-			end
-		end,
-		addonTable
-	)
-else
-	local scm = C_ChatInfo.SendChatMessage;
-	function C_ChatInfo.SendChatMessage(msg, ...)
-		if msg ~= nil then
-			if Emoticons_Settings["ENABLE_CLICKABLEEMOTES"] then
-				msg = TwitchEmotes_Message_StripEscapes(msg) 
-			end
-			scm(msg, ...);
+		local newMsg = TwitchEmotes_Message_StripEscapes(msg)
+		if newMsg ~= msg then
+			editBox:SetText(newMsg)
 		end
-	end
-end
-
-
-local bnsw = BNSendWhisper;
-function BNSendWhisper(id, msg, ...)
-	if msg ~= nil then
-		if Emoticons_Settings["ENABLE_CLICKABLEEMOTES"] then
-			msg = TwitchEmotes_Message_StripEscapes(msg) 
-		end
-		bnsw(id, msg, ...);
-	end
-end
+	end,
+	addonTable
+)
 
 local function escpattern(x)
 	return (x:gsub('%%', '%%%%')
