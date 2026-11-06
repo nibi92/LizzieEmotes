@@ -4,16 +4,38 @@ local issecretvalue = issecretvalue or function()
 	return false
 end
 
+local function UpdateChatAnimations(frame)
+	if not frame or not frame:IsShown() then return end
+	if frame.visibleLines then
+		for _, line in ipairs(frame.visibleLines) do
+			if line.messageInfo ~= TwitchEmotes_HoverMessageInfo then
+				TwitchEmotesAnimator_UpdateEmoteInFontString(line, 28, 28)
+			end
+		end
+	else
+		-- EllesmereUI uses a bare ScrollingMessageFrame instead of Blizzard's
+		-- chat mixin. Its displayed FontStrings are regions, without visibleLines.
+		for _, region in ipairs({frame:GetRegions()}) do
+			if region:IsObjectType("FontString") and region:IsShown() then
+				TwitchEmotesAnimator_UpdateEmoteInFontString(region, 28, 28)
+			end
+		end
+	end
+end
+
 function TwitchEmotesAnimator_OnUpdate(self, elapsed)
 
 	if (TWITCHEMOTES_TimeSinceLastUpdate >= 0.033) then
 		-- Update animated emotes in chat windows
 		for _, frameName in pairs(CHAT_FRAMES) do
-			for _, visibleLine in ipairs(_G[frameName].visibleLines) do
-				if(_G[frameName]:IsShown() and visibleLine.messageInfo ~= TwitchEmotes_HoverMessageInfo) then 
-					TwitchEmotesAnimator_UpdateEmoteInFontString(visibleLine, 28, 28);
-				end
-			end
+			UpdateChatAnimations(_G[frameName])
+		end
+
+		-- Resolve on each tick so addon load order and newly opened windows work.
+		local modules = EllesmereUI and EllesmereUI._ModuleNS
+		local chat = modules and modules.EllesmereUIChat
+		for _, window in pairs(chat and chat._chatWins or {}) do
+			UpdateChatAnimations(window.smf)
 		end
 
 		-- Update animated emotes in suggestion list

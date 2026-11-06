@@ -730,7 +730,7 @@ function Emoticons_InsertEmoticons(msg, senderGUID, msgID)
 					end
 				end
 			else 
-				path_and_size = TwitchEmotes_BuildEmoteFrameString(path, animdata, 0):gsub("|T", ""):gsub("|t", "");
+				path_and_size = TwitchEmotes_BuildEmoteFrameStringWithDimensions(path, animdata, 0, 28, 28):gsub("|T", ""):gsub("|t", "");
 			end
 			
 
