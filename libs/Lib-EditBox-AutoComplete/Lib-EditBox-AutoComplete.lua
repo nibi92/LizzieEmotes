@@ -35,14 +35,10 @@ function SetupAutoComplete(editbox, valueList, maxButtonCount, settings)
 
 	editbox.old_OnEnterPressed = editbox.old_OnEnterPressed or
 									 editbox:GetScript("OnEnterPressed")
-	editbox.old_OnEscPressed = editbox.old_OnEscPressed or
-								   editbox:GetScript("OnEscapePressed")
 	editbox.old_OnTabPressed = editbox.old_OnTabPressed or
 								   editbox:GetScript("OnTabPressed")
 	editbox.old_OnKeyDown = editbox.old_OnKeyDown or
 								editbox:GetScript("OnKeyDown")
-	editbox.old_OnEditFocusLost = editbox.old_OnEditFocusLost or
-									  editbox:GetScript("OnEditFocusLost")
 
 	local defaultsettings = {
 		perWord = false,
@@ -137,24 +133,17 @@ function SetupAutoComplete(editbox, valueList, maxButtonCount, settings)
 
 	end)
 
-	editbox:SetScript("OnEditFocusLost", function(editbox)
+	-- Let Blizzard run its own handler securely before our cleanup. Calling
+	-- a saved handler from addon code taints chat header layout for whispers.
+	editbox:HookScript("OnEditFocusLost", function(editbox)
 		if not EditBoxAutoCompleteBox.mouseInside then
 			EditBoxAutoComplete_HideIfAttachedTo(editbox)
 			EditBox_ClearHighlight(editbox)
-			editbox.old_OnEditFocusLost(editbox)
 		end
 	end)
 
-	editbox:SetScript("OnEscapePressed", function(editbox)
-		if not EditBoxAutoComplete_OnEscapePressed(editbox) then
-			editbox.old_OnEscPressed(editbox)
-
-			if AceGUI then
-				AceGUI:ClearFocus(editbox.obj)
-			else
-				editbox:ClearFocus()
-			end
-		end
+	editbox:HookScript("OnEscapePressed", function(editbox)
+		EditBoxAutoComplete_OnEscapePressed(editbox)
 	end)
 
 end
@@ -229,14 +218,12 @@ local function GetEditBoxAutoCompleteResults(text, valueList, fuzzyMatch)
 end
 
 function EditBoxAutoComplete_OnLoad(self)
-	self:SetBackdrop({
-		bgFile = 'Interface\\DialogFrame\\UI-DialogBox-Background-Dark',
-		edgeFile = 'Interface\\DialogFrame\\UI-DialogBox-Background-Dark',
-		tile = true,
-		tileSize = 32,
-		edgeSize = 1,
-		insets = {left = 0, right = 0, top = 0, bottom = 0}
-	})
+	-- Chat anchors can acquire secret dimensions. A texture follows those
+	-- dimensions natively, without BackdropTemplate doing Lua arithmetic.
+	local background = self:CreateTexture(nil, "BACKGROUND")
+	background:SetAllPoints(self)
+	background:SetTexture('Interface\\DialogFrame\\UI-DialogBox-Background-Dark')
+	self.background = background
 	AutoCompleteInstructions:SetText("|cffbbbbbb" .. PRESS_TAB .. "|r");
 end
 
