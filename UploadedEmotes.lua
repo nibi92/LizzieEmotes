@@ -51,6 +51,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["curtsy"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\curtsy_4da6f33cbdf64095bc904b067e79dc11.tga:28:28"
+TwitchEmotes_emoticons["curtsy"] = "curtsy"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\curtsy_4da6f33cbdf64095bc904b067e79dc11.tga"] = {nFrames = 38, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.333333}
+category[#category + 1] = "curtsy"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["ermm"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ermm_c05a7e50bcd2427db46addf1b54331bf.tga:28:28"
 TwitchEmotes_emoticons["ermm"] = "ermm"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ermm_c05a7e50bcd2427db46addf1b54331bf.tga"] = {nFrames = 34, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.185185}

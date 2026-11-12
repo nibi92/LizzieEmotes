@@ -158,5 +158,15 @@
     "framerate": 24.615385,
     "trigger": "Hai",
     "texture": "Hai_a5ed714a1b48445ea1630b1bcf56ab2e"
+  },
+  "curtsy": {
+    "nFrames": 38,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 25.333333,
+    "trigger": "curtsy",
+    "texture": "curtsy_4da6f33cbdf64095bc904b067e79dc11"
   }
 }
