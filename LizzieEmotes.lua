@@ -498,7 +498,7 @@ function Emoticons_OptionsWindow_OnShow(self)
 	end
 end
 
-function Emoticons_RunReplacement(msg, senderGUID, msgID)
+function Emoticons_RunReplacement(msg, senderGUID, msgID, suppressStats)
 	-- remember to watch out for |H|h|h's
 
 	local outstr = "";
@@ -512,7 +512,7 @@ function Emoticons_RunReplacement(msg, senderGUID, msgID)
 		local link = string.sub(msg, linkStart, linkEnd)
 
 		if startpos < linkStart then
-			outstr = outstr .. Emoticons_InsertEmoticons(string.sub(msg, startpos, linkStart - 1), senderGUID, msgID); -- the bit before the current link
+			outstr = outstr .. Emoticons_InsertEmoticons(string.sub(msg, startpos, linkStart - 1), senderGUID, msgID, suppressStats); -- the bit before the current link
 	end
 		outstr = outstr .. link -- don't run replacement on the link, just add it to the return string
 		startpos = linkEnd + 1
@@ -520,7 +520,7 @@ function Emoticons_RunReplacement(msg, senderGUID, msgID)
 		linkStart, linkEnd = string.find(msg, "%[.+-.+%]+", startpos) -- find next link
 	end
 
-	outstr = outstr .. Emoticons_InsertEmoticons(string.sub(msg, startpos, #msg), senderGUID, msgID); -- the bit after the last link (or the whole message when no links found)
+	outstr = outstr .. Emoticons_InsertEmoticons(string.sub(msg, startpos, #msg), senderGUID, msgID, suppressStats); -- the bit after the last link (or the whole message when no links found)
 
 	return outstr;
 end
@@ -656,7 +656,7 @@ function UpdateEmoteStats(emote, nrTimesAutoCompleted, nrTimesSent, nrTimesSeen)
 end
 
 local lastmsgID = -1;
-function Emoticons_InsertEmoticons(msg, senderGUID, msgID)
+function Emoticons_InsertEmoticons(msg, senderGUID, msgID, suppressStats)
 	local normal = '28:28'
 	local large = '64:64'
 	local xlarge = '128:128'
@@ -668,7 +668,7 @@ function Emoticons_InsertEmoticons(msg, senderGUID, msgID)
 
 		if TwitchEmotes_defaultpack[emote] ~= nil then
 			--print("Inserting ", emote, msgID,  UnitGUID("player"));
-			if accept_stat_updates then
+			if accept_stat_updates and not suppressStats then
 				if msgID ~= lastmsgID then -- Only handle 
 					local localPlayerGUID = UnitGUID("player");
 					if localPlayerGUID == senderGUID then --We sent this message
@@ -735,7 +735,7 @@ function Emoticons_InsertEmoticons(msg, senderGUID, msgID)
 		end
 	end
 
-	lastmsgID = msgID; -- we only save stats of unique messages (this function is called multiple times per message, for each chat frame)
+	if not suppressStats then lastmsgID = msgID end; -- Only chat messages participate in statistics deduplication.
 	return msg;
 end
 

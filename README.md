@@ -11,6 +11,14 @@ expiry, unlike temporary Actions artifacts; they remain available while the
 repository, release and asset are retained. Future WoW updates may still require
 addon compatibility updates.
 
+## Guild Message of the Day
+
+Emote names in the guild Message of the Day render as images in the guild
+window and the MOTD announcement in chat. Keep **Guild** enabled in the addon
+options. Write normal emote names when editing the MOTD; the saved text stays
+unchanged, so members without the addon see the names. Members need the same
+emotes installed to see their images.
+
 ## Packaging
 
 With Python 3.12 or later:

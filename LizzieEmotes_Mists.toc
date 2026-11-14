@@ -14,6 +14,7 @@ DiscordEmotes.lua
 UploadedEmotes.lua
 LizzieEmotesAnimator.lua
 LizzieEmotes.lua
+GuildMOTD.lua
 LizzieEmoteStatistics.lua
 UI\LizzieEmotes.xml
 UI\LizzieEmoteStats.xml

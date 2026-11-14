@@ -26,6 +26,7 @@ end
 function TwitchEmotesAnimator_OnUpdate(self, elapsed)
 
 	if (TWITCHEMOTES_TimeSinceLastUpdate >= 0.033) then
+		if Emoticons_AnimateGuildMOTD then Emoticons_AnimateGuildMOTD() end
 		-- Update animated emotes in chat windows
 		for _, frameName in pairs(CHAT_FRAMES) do
 			UpdateChatAnimations(_G[frameName])
