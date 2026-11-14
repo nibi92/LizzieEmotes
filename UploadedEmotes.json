@@ -188,5 +188,15 @@
     "framerate": 25.333333,
     "trigger": "shrug",
     "texture": "shrug_8bcf3e21b2b6403fb69f44680c6a826e"
+  },
+  "susge": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "susge",
+    "texture": "susge_cea2cbf864014091b4abe30ce1c5217d"
   }
 }

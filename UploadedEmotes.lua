@@ -121,6 +121,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["susge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\susge_cea2cbf864014091b4abe30ce1c5217d.tga:28:28"
+TwitchEmotes_emoticons["susge"] = "susge"
+category[#category + 1] = "susge"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["walkk"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\walkk_bc33dd02f66541c3b868dcc4990cbc22.tga:28:28"
 TwitchEmotes_emoticons["walkk"] = "walkk"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\walkk_bc33dd02f66541c3b868dcc4990cbc22.tga"] = {nFrames = 24, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 2048, framerate = 25.0}
