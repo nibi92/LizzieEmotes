@@ -90,6 +90,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["glorp"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\glorp_101c302614bf4d37b3f8a1bbc604d4f0.tga:28:28"
+TwitchEmotes_emoticons["glorp"] = "glorp"
+category[#category + 1] = "glorp"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["ohboy"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ohboy_d596c154739f4a94aadd9618e73d6017.tga:28:28"
 TwitchEmotes_emoticons["ohboy"] = "ohboy"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ohboy_d596c154739f4a94aadd9618e73d6017.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 18.285714}
