@@ -218,5 +218,15 @@
     "framerate": 50.0,
     "trigger": "ok",
     "texture": "ok_7d18851051b248e1957ca3db5c88f756"
+  },
+  "o7": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 12.522011,
+    "trigger": "o7",
+    "texture": "o7_0d2b0f2f46074098ba1640ed4dcba18c"
   }
 }
