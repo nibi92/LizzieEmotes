@@ -198,5 +198,15 @@
     "framerate": 50.0,
     "trigger": "susge",
     "texture": "susge_cea2cbf864014091b4abe30ce1c5217d"
+  },
+  "moo": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 20.983607,
+    "trigger": "moo",
+    "texture": "moo_4faa54a476a744caa923819a0103486a"
   }
 }
