@@ -113,6 +113,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["ok"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\ok_7d18851051b248e1957ca3db5c88f756.tga:28:28"
+TwitchEmotes_emoticons["ok"] = "ok"
+category[#category + 1] = "ok"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["shrug"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\shrug_8bcf3e21b2b6403fb69f44680c6a826e.tga:28:28"
 TwitchEmotes_emoticons["shrug"] = "shrug"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\shrug_8bcf3e21b2b6403fb69f44680c6a826e.tga"] = {nFrames = 38, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.333333}

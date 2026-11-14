@@ -208,5 +208,15 @@
     "framerate": 20.983607,
     "trigger": "moo",
     "texture": "moo_4faa54a476a744caa923819a0103486a"
+  },
+  "ok": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "ok",
+    "texture": "ok_7d18851051b248e1957ca3db5c88f756"
   }
 }
