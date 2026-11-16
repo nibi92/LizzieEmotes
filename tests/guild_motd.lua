@@ -74,20 +74,36 @@ ChatFrame1:AddMessage("Guild Message of the Day: :wave:")
 assert(messages[4][1] == "Guild Message of the Day: :wave:")
 Emoticons_Settings.CHAT_MSG_GUILD = true
 
--- Load-on-demand SimpleHTML display, including its first UpdateText call.
+-- A newly discovered SimpleHTML without GetText is rendered on its next update.
 local html = { SetText = label().SetText }
 local info = { MOTDScrollFrame = { MOTD = html } }
-C_GuildInfo = { GetMOTD = function() return ":wave:" end }
+local blizzardUpdating = false
+C_GuildInfo = { GetMOTD = function()
+	assert(blizzardUpdating, "addon called protected GetMOTD")
+	return ":wave:"
+end }
+GetGuildRosterMOTD = function() error("addon called legacy MOTD API") end
 CommunitiesGuildInfoFrame_UpdateText = function(self)
+	blizzardUpdating = true
 	self.MOTDScrollFrame.MOTD:SetText(C_GuildInfo.GetMOTD(), true)
+	blizzardUpdating = false
 end
 events.onEvent()
 CommunitiesGuildInfoFrame_UpdateText(info)
+assert(html.text == ":wave:")
+CommunitiesGuildInfoFrame_UpdateText(info)
 assert(html.text:find("|T", 1, true) and html.ignoreMarkup == true)
 assert(not html.text:find("|H", 1, true))
-assert(C_GuildInfo.GetMOTD() == ":wave:", "stored MOTD changed")
 html:SetText("Updated :wave:", true)
 assert(html.text:find("|T", 1, true))
+
+-- Normal load-on-demand setup hooks the display before Blizzard's first update.
+local loadedHTML = { SetText = label().SetText }
+local loadedInfo = { MOTDScrollFrame = { MOTD = loadedHTML } }
+CommunitiesFrame = { GuildDetailsFrame = { Info = loadedInfo } }
+events.onEvent()
+CommunitiesGuildInfoFrame_UpdateText(loadedInfo)
+assert(loadedHTML.text:find("|T", 1, true) and loadedHTML.ignoreMarkup == true)
 
 -- New chat windows and repeated setup must preserve one message per call.
 ChatFrame2 = { AddMessage = ChatFrame1.AddMessage }

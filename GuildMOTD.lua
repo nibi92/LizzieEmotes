@@ -74,11 +74,8 @@ events:SetScript("OnEvent", function()
 		events.hookedGuildInfo = true
 		hooksecurefunc("CommunitiesGuildInfoFrame_UpdateText", function(self)
 			HookDisplay(self.MOTDScrollFrame and self.MOTDScrollFrame.MOTD)
-			local getMOTD = C_GuildInfo and C_GuildInfo.GetMOTD or GetGuildRosterMOTD
-			if getMOTD then
-				local display = self.MOTDScrollFrame and self.MOTDScrollFrame.MOTD
-				if display then display:SetText(getMOTD(), true) end
-			end
+			-- GetMOTD is protected on Retail. Consume only display text supplied
+			-- by Blizzard; a secure post-hook does not grant API access.
 		end)
 	end
 end)
