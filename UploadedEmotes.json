@@ -228,5 +228,15 @@
     "framerate": 12.522011,
     "trigger": "o7",
     "texture": "o7_0d2b0f2f46074098ba1640ed4dcba18c"
+  },
+  "ALOO": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "ALOO",
+    "texture": "ALOO_e4cee0209d0145fc9f832fdd0925096b"
   }
 }
