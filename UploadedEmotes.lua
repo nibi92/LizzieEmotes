@@ -7,6 +7,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["Deadge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\Deadge_1e0aa9c74fea4804802453b252b796ed.tga:28:28"
+TwitchEmotes_emoticons["Deadge"] = "Deadge"
+category[#category + 1] = "Deadge"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["Hai"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\Hai_a5ed714a1b48445ea1630b1bcf56ab2e.tga:28:28"
 TwitchEmotes_emoticons["Hai"] = "Hai"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\Hai_a5ed714a1b48445ea1630b1bcf56ab2e.tga"] = {nFrames = 32, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 2048, framerate = 24.615385}

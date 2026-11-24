@@ -248,5 +248,15 @@
     "framerate": 14.918415,
     "trigger": "NOTED",
     "texture": "NOTED_ef15d7c40e844bfab97bcac45ef3d41b"
+  },
+  "Deadge": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "Deadge",
+    "texture": "Deadge_1e0aa9c74fea4804802453b252b796ed"
   }
 }
