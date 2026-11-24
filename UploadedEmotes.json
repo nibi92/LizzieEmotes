@@ -318,5 +318,15 @@
     "framerate": 10.0,
     "trigger": "lizzievDEAD",
     "texture": "lizzievDEAD_af9387e90b7842c5958da0f257e7af21"
+  },
+  "lizzievLURK": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 10.0,
+    "trigger": "lizzievLURK",
+    "texture": "lizzievLURK_006131ebe4d24b6d9775eb79ec525a2e"
   }
 }

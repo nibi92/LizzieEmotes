@@ -157,6 +157,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["lizzievLURK"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievLURK_006131ebe4d24b6d9775eb79ec525a2e.tga:28:28"
+TwitchEmotes_emoticons["lizzievLURK"] = "lizzievLURK"
+category[#category + 1] = "lizzievLURK"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["moo"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\moo_4faa54a476a744caa923819a0103486a.tga:28:28"
 TwitchEmotes_emoticons["moo"] = "moo"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\moo_4faa54a476a744caa923819a0103486a.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 20.983607}
