@@ -268,5 +268,15 @@
     "framerate": 25.0,
     "trigger": "HUHH",
     "texture": "HUHH_30c49f99a5774b43a3c7412a07e10c2a"
+  },
+  "stare": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 50.0,
+    "trigger": "stare",
+    "texture": "stare_2094cbafbfea4fd298132db88bd62da3"
   }
 }

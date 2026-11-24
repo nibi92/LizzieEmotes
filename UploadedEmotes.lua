@@ -174,6 +174,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["stare"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\stare_2094cbafbfea4fd298132db88bd62da3.tga:28:28"
+TwitchEmotes_emoticons["stare"] = "stare"
+category[#category + 1] = "stare"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["susge"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\susge_cea2cbf864014091b4abe30ce1c5217d.tga:28:28"
 TwitchEmotes_emoticons["susge"] = "susge"
 category[#category + 1] = "susge"
