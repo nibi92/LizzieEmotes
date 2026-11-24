@@ -143,6 +143,13 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["lizzievDEAD"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievDEAD_af9387e90b7842c5958da0f257e7af21.tga:28:28"
+TwitchEmotes_emoticons["lizzievDEAD"] = "lizzievDEAD"
+category[#category + 1] = "lizzievDEAD"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["lizzievGIFT"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievGIFT_b3ffe1903370411395bfa91a5ad8d781.tga:28:28"
 TwitchEmotes_emoticons["lizzievGIFT"] = "lizzievGIFT"
 category[#category + 1] = "lizzievGIFT"

@@ -308,5 +308,15 @@
     "framerate": 25.0,
     "trigger": "lizzievBEHOLD",
     "texture": "lizzievBEHOLD_ccda61660abf47ae8e114e6d6f3dce99"
+  },
+  "lizzievDEAD": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 10.0,
+    "trigger": "lizzievDEAD",
+    "texture": "lizzievDEAD_af9387e90b7842c5958da0f257e7af21"
   }
 }
