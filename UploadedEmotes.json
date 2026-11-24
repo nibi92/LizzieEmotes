@@ -288,5 +288,15 @@
     "framerate": 21.052632,
     "trigger": "Erm",
     "texture": "Erm_9af3d512f0dd41379a56c0a28b338389"
+  },
+  "lizzievGIFT": {
+    "nFrames": 1,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 64,
+    "framerate": 10.0,
+    "trigger": "lizzievGIFT",
+    "texture": "lizzievGIFT_b3ffe1903370411395bfa91a5ad8d781"
   }
 }
