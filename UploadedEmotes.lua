@@ -14,6 +14,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["HUHH"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\HUHH_30c49f99a5774b43a3c7412a07e10c2a.tga:28:28"
+TwitchEmotes_emoticons["HUHH"] = "HUHH"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\HUHH_30c49f99a5774b43a3c7412a07e10c2a.tga"] = {nFrames = 47, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.0}
+category[#category + 1] = "HUHH"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["Hai"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\Hai_a5ed714a1b48445ea1630b1bcf56ab2e.tga:28:28"
 TwitchEmotes_emoticons["Hai"] = "Hai"
 TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\Hai_a5ed714a1b48445ea1630b1bcf56ab2e.tga"] = {nFrames = 32, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 2048, framerate = 24.615385}

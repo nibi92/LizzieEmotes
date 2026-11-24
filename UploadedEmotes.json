@@ -258,5 +258,15 @@
     "framerate": 50.0,
     "trigger": "Deadge",
     "texture": "Deadge_1e0aa9c74fea4804802453b252b796ed"
+  },
+  "HUHH": {
+    "nFrames": 47,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 25.0,
+    "trigger": "HUHH",
+    "texture": "HUHH_30c49f99a5774b43a3c7412a07e10c2a"
   }
 }
