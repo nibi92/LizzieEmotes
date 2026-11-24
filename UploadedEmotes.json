@@ -278,5 +278,15 @@
     "framerate": 50.0,
     "trigger": "stare",
     "texture": "stare_2094cbafbfea4fd298132db88bd62da3"
+  },
+  "Erm": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 21.052632,
+    "trigger": "Erm",
+    "texture": "Erm_9af3d512f0dd41379a56c0a28b338389"
   }
 }
