@@ -238,5 +238,15 @@
     "framerate": 50.0,
     "trigger": "ALOO",
     "texture": "ALOO_e4cee0209d0145fc9f832fdd0925096b"
+  },
+  "NOTED": {
+    "nFrames": 64,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 14.918415,
+    "trigger": "NOTED",
+    "texture": "NOTED_ef15d7c40e844bfab97bcac45ef3d41b"
   }
 }

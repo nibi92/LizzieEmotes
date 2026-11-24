@@ -44,6 +44,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["NOTED"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\NOTED_ef15d7c40e844bfab97bcac45ef3d41b.tga:28:28"
+TwitchEmotes_emoticons["NOTED"] = "NOTED"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\NOTED_ef15d7c40e844bfab97bcac45ef3d41b.tga"] = {nFrames = 64, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 14.918415}
+category[#category + 1] = "NOTED"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["PauseChamp"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\pausechamp.tga:28:28"
 TwitchEmotes_emoticons["PauseChamp"] = "PauseChamp"
 category[#category + 1] = "PauseChamp"
