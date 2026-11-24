@@ -298,5 +298,15 @@
     "framerate": 10.0,
     "trigger": "lizzievGIFT",
     "texture": "lizzievGIFT_b3ffe1903370411395bfa91a5ad8d781"
+  },
+  "lizzievBEHOLD": {
+    "nFrames": 48,
+    "frameWidth": 64,
+    "frameHeight": 64,
+    "imageWidth": 64,
+    "imageHeight": 4096,
+    "framerate": 25.0,
+    "trigger": "lizzievBEHOLD",
+    "texture": "lizzievBEHOLD_ccda61660abf47ae8e114e6d6f3dce99"
   }
 }

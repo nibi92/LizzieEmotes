@@ -135,6 +135,14 @@ if #category == 45 then
     TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
     category = {}
 end
+TwitchEmotes_defaultpack["lizzievBEHOLD"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievBEHOLD_ccda61660abf47ae8e114e6d6f3dce99.tga:28:28"
+TwitchEmotes_emoticons["lizzievBEHOLD"] = "lizzievBEHOLD"
+TwitchEmotes_animation_metadata["Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievBEHOLD_ccda61660abf47ae8e114e6d6f3dce99.tga"] = {nFrames = 48, frameWidth = 64, frameHeight = 64, imageWidth = 64, imageHeight = 4096, framerate = 25.0}
+category[#category + 1] = "lizzievBEHOLD"
+if #category == 45 then
+    TwitchEmotes_dropdown_options[#TwitchEmotes_dropdown_options + 1] = category
+    category = {}
+end
 TwitchEmotes_defaultpack["lizzievGIFT"] = "Interface\\AddOns\\LizzieEmotes\\Emotes\\uploaded\\lizzievGIFT_b3ffe1903370411395bfa91a5ad8d781.tga:28:28"
 TwitchEmotes_emoticons["lizzievGIFT"] = "lizzievGIFT"
 category[#category + 1] = "lizzievGIFT"
